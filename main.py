@@ -10,7 +10,7 @@ BOT_TOKEN = '8450856906:AAHO5RMn0fpmPJ78aZMFtToWHlXYLFyeqJQ'
 # ==========================================
 
 bot = telebot.TeleBot(BOT_TOKEN)
-API_URL"https://www.tikwm.com/api/"
+API_URL = "https://www.tikwm.com/api/"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
