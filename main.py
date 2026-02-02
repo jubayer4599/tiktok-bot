@@ -60,11 +60,11 @@ def download_tiktok(message):
 
             # আপনার ডিজাইন
             caption_text = (
-                f"👤 @{author}\n"
+                f"👤 ᴛɪᴋᴛᴏᴋ: @{author}\n"
                 f"╔══════════════╗\n"
-                f"╠ ʟɪᴋᴇ ❤️ : {likes:,}\n"
+                f"╠ ʟɪᴋᴇ ❤️: {likes:,}\n"
                 f"║\n"
-                f"╠ ᴠɪᴇᴡs 👀 : {views:,}\n"
+                f"╠ ᴠɪᴇᴡs 👀: {views:,}\n"
                 f"╚══════════════╝\n"
                 f"📝 {title}\n\n"
                 f"➥ ᴘᴏᴡᴇʀ  ʙʏ @jubayer3501"
