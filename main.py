@@ -6,7 +6,7 @@ from keep_alive import keep_alive
 
 # ==========================================
 # আপনার টেলিগ্রাম বটের টোকেন এখানে দিন
-BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE'
+BOT_TOKEN = '8263725802:AAGObUwa_EQYpuWgQMomSnECroIOc1symEE'
 # ==========================================
 
 bot = telebot.TeleBot(BOT_TOKEN)
