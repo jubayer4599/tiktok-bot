@@ -67,45 +67,30 @@ def download_tiktok(message):
                     bot.delete_message(message.chat.id, status_msg.message_id)
                 except:
                     pass
-
-            # ভিডিও লজিক
+                    
+                # ভিডিও লজিক (বড় ফাইল সাপোর্ট সহ)
             else:
                 video_url = video_data.get("play")
-                bot.edit_message_text("🚀 ভিডিও আপলোড হচ্ছে...", chat_id=message.chat.id, message_id=status_msg.message_id)
+                bot.edit_message_text("🚀 বড় ভিডিও প্রসেসিং হচ্ছে... আপলোড শুরু হয়েছে।", chat_id=message.chat.id, message_id=status_msg.message_id)
                 
                 try:
+                    # ফাইল ডাউনলোড না করে সরাসরি URL ব্যবহার করে পাঠানো (এটি দ্রুত এবং বড় ফাইল সাপোর্ট করে)
                     bot.send_video(
                         message.chat.id, 
                         video_url, 
                         caption=f"📝 {title}", 
-                        parse_mode="Markdown"
+                        parse_mode="Markdown",
+                        timeout=120 # সার্ভারকে ২ মিনিট সময় দেওয়া হলো আপলোডের জন্য
                     )
-                    bot.delete_message(message.chat.id, status_msg.message_id)
+                    
+                    try:
+                        bot.delete_message(message.chat.id, status_msg.message_id)
+                    except:
+                        pass
                 except Exception as e:
-                    bot.edit_message_text("❌ ভিডিও পাঠানো যায়নি (File too large or Telegram Error).", chat_id=message.chat.id, message_id=status_msg.message_id)
                     print(f"Send Video Error: {e}")
-
-        else:
-            bot.edit_message_text("❌ ভিডিও পাওয়া যায়নি। লিংক চেক করুন।", chat_id=message.chat.id, message_id=status_msg.message_id)
-
-    except Exception as e:
-        print(f"Critical Error in handler: {e}")
-        # ক্র্যাশ না করে ইউজারকে জানানো
-        try:
-            bot.reply_to(message, "⚠️ একটি অজানা সমস্যা হয়েছে। দয়া করে আবার লিংক দিন।")
-        except:
-            pass
-
-# --- সার্ভার রান এবং রিকানেক্ট লজিক ---
-if __name__ == "__main__":
-    keep_alive() # সার্ভার জাগিয়ে রাখা
-    
-    # এই লুপটি বটকে মরতে দিবে না
-    while True:
-        try:
-            print("🚀 Bot connecting to Telegram...")
-            # timeout এবং long_polling_timeout ব্যবহার করা হয়েছে কানেকশন স্টেবল রাখার জন্য
-            bot.infinity_polling(timeout=10, long_polling_timeout=5)
-        except Exception as e:
-            print(f"❌ Bot Crashed! Restarting in 5 seconds... Error: {e}")
-            time.sleep(5) # ৫ সেকেন্ড বিশ্রাম নিয়ে আবার চালু হবে
+                    # যদি URL পদ্ধতিতে কাজ না হয়, তবে টেক্সট লিংক হিসেবে পাঠানো
+                    bot.edit_message_text(f"❌ ভিডিওটি সরাসরি পাঠানো সম্ভব হয়নি।\n\n🔗 আপনি এখান থেকে ডাউনলোড করতে পারেন: [Download Link]({video_url})", 
+                                         chat_id=message.chat.id, 
+                                         message_id=status_msg.message_id, 
+                                         parse_mode="Markdown")
