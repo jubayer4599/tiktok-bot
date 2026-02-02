@@ -67,9 +67,7 @@ def download_tiktok(message):
                 f"╠ Views 👀 : {views:,}\n"
                 f"╚═════════════════╝\n"
                 f"📝 {title}\n\n"
-                f"➜ ᴘᴏᴡᴇʀ  ʙʏ  ᴊᴜʙᴀʏᴇʀ  ♡ جباير"
-                f"@jubayer3501"
-                f"➥ ᴊᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ @bdmodspro"
+                f"➥ ᴘᴏᴡᴇʀ  ʙʏ @jubayer3501"
             )
 
             # স্লাইডশো লজিক
