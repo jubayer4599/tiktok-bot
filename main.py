@@ -68,29 +68,32 @@ def download_tiktok(message):
                 except:
                     pass
                     
-                # ভিডিও লজিক (বড় ফাইল সাপোর্ট সহ)
+                            # ভিডিও লজিক (লাইক এবং ভিউস সহ)
             else:
                 video_url = video_data.get("play")
-                bot.edit_message_text("🚀 বড় ভিডিও প্রসেসিং হচ্ছে... আপলোড শুরু হয়েছে।", chat_id=message.chat.id, message_id=status_msg.message_id)
+                
+                # লাইক, ভিউস এবং কমেন্ট সংখ্যা নেওয়া
+                likes = video_data.get("digg_count", 0)
+                views = video_data.get("play_count", 0)
+                comments = video_data.get("comment_count", 0)
+                
+                # সংখ্যাগুলো সুন্দর করে সাজানো (যেমন: 1500 থেকে 1.5K করা যায়, তবে এখানে সরাসরি দেখাচ্ছি)
+                stats = f"❤️ Likes: {likes:,} | 👁️ Views: {views:,} | 💬 Comments: {comments:,}"
+
+                bot.edit_message_text("🚀 ভিডিও এবং তথ্য প্রসেসিং হচ্ছে...", chat_id=message.chat.id, message_id=status_msg.message_id)
                 
                 try:
-                    # ফাইল ডাউনলোড না করে সরাসরি URL ব্যবহার করে পাঠানো (এটি দ্রুত এবং বড় ফাইল সাপোর্ট করে)
                     bot.send_video(
                         message.chat.id, 
                         video_url, 
-                        caption=f"📝 {title}", 
+                        caption=f"📝 **{title}**\n\n📊 **Stats:**\n{stats}\n\n✅ Powered by @YourBotUsername", 
                         parse_mode="Markdown",
-                        timeout=120 # সার্ভারকে ২ মিনিট সময় দেওয়া হলো আপলোডের জন্য
+                        timeout=120
                     )
-                    
-                    try:
-                        bot.delete_message(message.chat.id, status_msg.message_id)
-                    except:
-                        pass
+                    bot.delete_message(message.chat.id, status_msg.message_id)
                 except Exception as e:
                     print(f"Send Video Error: {e}")
-                    # যদি URL পদ্ধতিতে কাজ না হয়, তবে টেক্সট লিংক হিসেবে পাঠানো
-                    bot.edit_message_text(f"❌ ভিডিওটি সরাসরি পাঠানো সম্ভব হয়নি।\n\n🔗 আপনি এখান থেকে ডাউনলোড করতে পারেন: [Download Link]({video_url})", 
+                    bot.edit_message_text(f"❌ ভিডিও পাঠানো যায়নি।\n\n📊 {stats}\n\n🔗 [Download Link]({video_url})", 
                                          chat_id=message.chat.id, 
                                          message_id=status_msg.message_id, 
                                          parse_mode="Markdown")
