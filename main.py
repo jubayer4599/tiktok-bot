@@ -22,20 +22,41 @@ print("✅ Bot system is active...")
 def send_welcome(message):
     try:
         # সুন্দর লিস্ট ডিজাইন
-        welcome_text = (
-            "👋 **স্বাগতম! আমি একটি প্রিমিয়াম টিকটক ভিডিও অডিও ফটো কেপশন ডাউনলোডার বট।**\n\n"
-            "🚀 **আমার ক্ষমতা বা ফিচারের তালিকা:**\n"
-            "━━━━━━━━━━━━━━━━━━━━\n"
-            "✅ **Watermark Removal:** লোগো ছাড়া ফ্রেশ ভিডিও।\n"
-            "📸 **Slideshow Support:** স্লাইডশো থেকে ছবি ডাউনলোড।\n"
-            "🎵 **Audio Extract:** ভিডিও থেকে MP3 সংগ্রহ।\n"
-            "📊 **Real-time Stats:** লাইক এবং ভিউস সংখ্যা দেখা।\n"
-            "⚡ **High Speed:** সুপার ফাস্ট প্রসেসিং ও ডেলিভারি।\n"
-            "📂 **Large Files:** বড় সাইজ ভিডিও সাপোর্ট।\n"
-            "━━━━━━━━━━━━━━━━━━━━\n\n"
-            "💡 **ব্যবহার নিয়ম:** শুধু একটি TikTok ভিডিও লিংক পাঠান।\n\n"
-            "➥ ᴘᴏᴡᴇʀ  ʙʏ  ᴊᴜʙᴀʏᴇʀ  ♡ جباير"
-        )
+        # Welcome text in Bangla
+welcome_text_bangla = (
+    "👋 **স্বাগতম! আমি একটি প্রিমিয়াম টিকটক ভিডিও অডিও ফটো কেপশন ডাউনলোডার বট।**\n\n"
+    "🚀 **আমার ক্ষমতা বা ফিচারের তালিকা:**\n"
+    "━━━━━━━━━━━━━━━━━━━━\n"
+    "✅ **Watermark Removal:** লোগো ছাড়া ফ্রেশ ভিডিও।\n"
+    "📸 **Slideshow Support:** স্লাইডশো থেকে ছবি ডাউনলোড।\n"
+    "🎵 **Audio Extract:** ভিডিও থেকে MP3 সংগ্রহ।\n"
+    "📊 **Real-time Stats:** লাইক এবং ভিউস সংখ্যা দেখা।\n"
+    "⚡ **High Speed:** সুপার ফাস্ট প্রসেসিং ও ডেলিভারি।\n"
+    "📂 **Large Files:** বড় সাইজ ভিডিও সাপোর্ট।\n"
+    "━━━━━━━━━━━━━━━━━━━━\n\n"
+    "💡 **ব্যবহার নিয়ম:** শুধু একটি TikTok ভিডিও লিংক পাঠান।\n\n"
+    "➥ ᴘᴏᴡᴇʀ  ʙʏ  ᴊᴜʙᴀʏᴇʀ  ♡ جباير"
+)
+
+# Welcome text in English
+welcome_text_english = (
+    "👋 **Welcome! I am a premium TikTok video audio photo caption downloader bot.**\n\n"
+    "🚀 **My capabilities or feature list:**\n"
+    "━━━━━━━━━━━━━━━━━━━━\n"
+    "✅ **Watermark Removal:** Fresh video without logo.\n"
+    "📸 **Slideshow Support:** Download photos from slideshow.\n"
+    "🎵 **Audio Extract:** Extract MP3 from video.\n"
+    "📊 **Real-time Stats:** View like and view counts.\n"
+    "⚡ **High Speed:** Super fast processing and delivery.\n"
+    "📂 **Large Files:** Supports large size videos.\n"
+    "━━━━━━━━━━━━━━━━━━━━\n\n"
+    "💡 **Usage Instructions:** Just send a TikTok video link.\n\n"
+    "➥ ᴘᴏᴡᴇʀ  ʙʏ  ᴊᴜʙᴀʏᴇʀ  ♡ جباير"
+)
+
+# Print Bangla and English Text separately
+print("Bangla Text:\n", welcome_text_bangla)
+print("\nEnglish Text:\n", welcome_text_english)
         bot.send_chat_action(message.chat.id, 'typing')
         bot.reply_to(message, welcome_text, parse_mode="Markdown")
     except Exception as e:
